@@ -1,7 +1,7 @@
 import { Check, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-function ListTask({ listTask, onCompleteTask, onDeleteTask }) {
+function ListTask({ listTask, onCompleteTask, onDeleteTask, onDeleteCompletedTasks }) {
     const navigate = useNavigate();
 
     function handleNavigateTask(task) {
@@ -10,7 +10,7 @@ function ListTask({ listTask, onCompleteTask, onDeleteTask }) {
             description: task.description,
         }).toString();
         navigate(`/tasks?${queryParams}`)
-    }   
+    }
 
     return (
         <div className="bg-white w-125 flex flex-col gap-4 p-4 rounded">
@@ -39,6 +39,14 @@ function ListTask({ listTask, onCompleteTask, onDeleteTask }) {
                     </div>
                 </div>
             ))}
+            <div className="flex items-center justify-between">
+                <div>
+                    {listTask.filter(task => task.completed).length} de {listTask.length} tarefas concluídas.
+                </div>
+                <div className="rounded-md p-2 bg-red-200 cursor-pointer" onClick={() => onDeleteCompletedTasks()}>
+                    Limpar Concluídas
+                </div>
+            </div>
         </div>
     )
 }

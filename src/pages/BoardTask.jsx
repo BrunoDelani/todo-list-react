@@ -38,10 +38,15 @@ function BoardTask() {
         setListTask(updatedList);
     }
 
+    function onDeleteCompletedTasks() {
+        const updatedList = listTask.filter((task) => !task.completed);
+        setListTask(updatedList);
+    }
+
     return (
         <div className='bg-blue-300 w-full min-h-screen flex flex-col gap-y-5 items-center p-10'>
             <AddTask addTask={addTask} />
-            <ListTask listTask={listTask} onCompleteTask={onCompleteTask} onDeleteTask={onDeleteTask} />
+            <ListTask listTask={listTask} onCompleteTask={onCompleteTask} onDeleteTask={onDeleteTask} onDeleteCompletedTasks={onDeleteCompletedTasks} />
         </div>
     );
 }
