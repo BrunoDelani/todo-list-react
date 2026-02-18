@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { toast } from "sonner";
 import { showError, showSuccess } from "../services/toast";
 
 function AddTask({ addTask }) {
