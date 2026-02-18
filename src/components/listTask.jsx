@@ -6,8 +6,7 @@ function ListTask({ listTask, onCompleteTask, onDeleteTask, onDeleteCompletedTas
 
     function handleNavigateTask(task) {
         const queryParams = new URLSearchParams({
-            title: task.name,
-            description: task.description,
+            id: task.id,
         }).toString();
         navigate(`/tasks?${queryParams}`)
     }
