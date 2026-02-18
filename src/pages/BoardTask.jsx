@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AddTask from "../components/addTask";
 import ListTask from "../components/listTask";
+import { v4 as uuidv4 } from 'uuid';
 
 
 function BoardTask() {
@@ -15,7 +16,7 @@ function BoardTask() {
 
     function addTask(name, description) {
         const newTask = {
-            id: listTask.length + 1,
+            id: uuidv4(),
             name,
             description,
             completed: false,
