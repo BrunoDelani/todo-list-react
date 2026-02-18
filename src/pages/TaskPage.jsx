@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { showUpdated } from "../services/toast";
 
 function TaskPage() {
     const [searchParams] = useSearchParams();
@@ -43,8 +44,9 @@ function TaskPage() {
                     />
                 </div>
                 {changedDescription ?
-                    <button className="bg-orange-400 text-white py-2 cursor-pointer rounded" onClick={() => {
+                    <button className="bg-green-500 text-white py-2 cursor-pointer rounded" onClick={() => {
                         onEditTask(searchParams.get("id"), description);
+                        showUpdated("Descrição da tarefa atualizada com sucesso!");
                         setChangedDescription(false);
                     }}>Alterar descrição</button> :
                     <div className="bg-gray-400 text-white py-2 rounded text-center select-none">Sem modificações</div>

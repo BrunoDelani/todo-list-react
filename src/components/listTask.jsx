@@ -1,5 +1,6 @@
 import { Check, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { showSuccess } from "../services/toast";
 
 function ListTask({ listTask, onCompleteTask, onDeleteTask, onDeleteCompletedTasks }) {
     const navigate = useNavigate();
@@ -28,11 +29,11 @@ function ListTask({ listTask, onCompleteTask, onDeleteTask, onDeleteCompletedTas
                     </div>
                     <div className="flex gap-x-2.5 ">
                         {!task.completed &&
-                            <button className="cursor-pointer bg-blue-200 p-2 rounded-md" onClick={() => onCompleteTask(task.id)}>
+                            <button className="cursor-pointer bg-green-400 p-2 rounded-md" onClick={() => onCompleteTask(task.id)}>
                                 <Check />
                             </button>
                         }
-                        <button className="cursor-pointer bg-blue-200 p-2 rounded-md" onClick={() => onDeleteTask(task.id)}>
+                        <button className="cursor-pointer bg-red-400 p-2 rounded-md" onClick={() => {onDeleteTask(task.id), showSuccess("Tarefa removida com sucesso!") }}>
                             <Trash2 />
                         </button>
                     </div>
@@ -42,7 +43,10 @@ function ListTask({ listTask, onCompleteTask, onDeleteTask, onDeleteCompletedTas
                 <div>
                     {listTask.filter(task => task.completed).length} de {listTask.length} tarefas concluídas.
                 </div>
-                <div className="rounded-md p-2 bg-red-200 cursor-pointer" onClick={() => onDeleteCompletedTasks()}>
+                <div className="rounded-md p-2 bg-green-400 cursor-pointer" onClick={() => {
+                    onDeleteCompletedTasks(), 
+                    showSuccess("Tarefas concluídas removidas com sucesso!")
+                    }}>
                     Limpar Concluídas
                 </div>
             </div>
