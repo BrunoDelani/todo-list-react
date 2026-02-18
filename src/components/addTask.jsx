@@ -29,6 +29,20 @@ function AddTask({ addTask }) {
                 addTask(title, description);
                 setTitle('');
                 setDescription('');
+                toast.success("Tarefa adicionada com sucesso!", {
+                    position: "top-center",
+                    duration: 2000,
+                    style: {
+                        border: "1px solid #10b981",
+                        padding: "16px",
+                        color: "#fff",
+                        background: "#10b981",
+                    },
+                    iconTheme: {
+                        primary: "#fff",
+                        secondary: "#10b981",
+                    },
+                });
             }}>Adicionar</button>
         </div>
     )
